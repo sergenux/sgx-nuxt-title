@@ -22,11 +22,14 @@
   ],
   "scripts": {
     "prepack": "nuxt-module-build prepare && nuxt-module-build build",
-    "typecheck": "nuxt typecheck",
+    "typecheck": "nuxt-module-build prepare && nuxt typecheck",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier . --check",
-    "format:fix": "prettier . --write"
+    "format:fix": "prettier . --write",
+    "outdated": "npm outdated",
+    "update": "npm update",
+    "postinstall": "nuxt-module-build prepare"
   },
   "dependencies": {
     "@nuxt/kit": "^3.10.2"
