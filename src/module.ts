@@ -1,6 +1,10 @@
 import { name, version } from "../package.json";
-
-import { defineNuxtModule } from "@nuxt/kit";
+import {
+  addRouteMiddleware,
+  addTypeTemplate,
+  createResolver,
+  defineNuxtModule,
+} from "@nuxt/kit";
 
 export default defineNuxtModule({
   meta: {
@@ -8,5 +12,24 @@ export default defineNuxtModule({
     version,
     configKey: "sgxTitle",
   },
-  setup() {},
+  setup() {
+    const { resolve } = createResolver(import.meta.url);
+
+    addRouteMiddleware({
+      name: "sgx-title",
+      path: resolve("./runtime/middleware/sgx-title"),
+      global: true,
+    });
+
+    addTypeTemplate({
+      filename: "./types/sgx-title.d.ts",
+      getContents: () => `
+      declare module "#app/../pages/runtime/composables" {
+        interface PageMeta {
+          title?: string;
+        }
+      }
+      export {};`,
+    });
+  },
 });
