@@ -21,15 +21,22 @@
     "dist"
   ],
   "scripts": {
+    "dev": "nuxt dev playground",
+    "dev:build": "nuxt build playground",
+    "dev:generate": "nuxt generate playground",
+    "dev:preview": "nuxt preview playground",
+    "dev:prepare": "nuxt prepare playground",
+    "dev:typecheck": "npm run dev:prepare && nuxt typecheck playground",
     "prepack": "nuxt-module-build prepare && nuxt-module-build build",
-    "typecheck": "nuxt-module-build prepare && nuxt typecheck",
+    "prepare": "nuxt-module-build prepare",
+    "typecheck": "npm run prepare && nuxt typecheck",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier . --check",
     "format:fix": "prettier . --write",
     "outdated": "npm outdated",
     "update": "npm update",
-    "postinstall": "nuxt-module-build prepare"
+    "postinstall": "npm run prepare && npm run dev:prepare"
   },
   "dependencies": {
     "@nuxt/kit": "^3.10.2"
