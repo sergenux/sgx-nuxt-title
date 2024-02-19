@@ -7,5 +7,13 @@
     "url": "https://github.com/sergenux/sgx-nuxt-title.git"
   },
   "license": "MIT",
-  "type": "module"
+  "type": "module",
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "devDependencies": {
+    "@nuxt/eslint-config": "^0.2.0",
+    "eslint": "^8.56.0"
+  }
 }
