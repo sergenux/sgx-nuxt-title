@@ -1,2 +1,3 @@
 # sgx-nuxt-title
-Auto title for Nuxt pages
+
+Auto title for Nuxt pages.

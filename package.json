@@ -1,0 +1,11 @@
+{
+  "name": "sgx-nuxt-title",
+  "version": "1.0.0-alpha",
+  "description": "Auto title for Nuxt pages",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sergenux/sgx-nuxt-title.git"
+  },
+  "license": "MIT",
+  "type": "module"
+}
