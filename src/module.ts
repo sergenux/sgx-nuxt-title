@@ -1,5 +1,6 @@
 import { name, version } from "../package.json";
 import {
+  addComponent,
   addImports,
   addRouteMiddleware,
   addTypeTemplate,
@@ -20,6 +21,11 @@ export default defineNuxtModule({
       name: "sgx-title",
       path: resolve("runtime/middleware/title"),
       global: true,
+    });
+
+    addComponent({
+      name: "SgxTitle",
+      filePath: resolve("runtime/components/title.vue"),
     });
 
     addImports({

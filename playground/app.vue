@@ -3,11 +3,7 @@
     <nav>
       <NuxtLink to="/">Back to Home page</NuxtLink>
     </nav>
-    <h1>{{ title }}</h1>
+    <SgxTitle />
     <NuxtPage />
   </div>
 </template>
-
-<script setup lang="ts">
-const title = useSgxTitle();
-</script>
