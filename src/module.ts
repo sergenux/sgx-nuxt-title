@@ -46,6 +46,7 @@ export default defineNuxtModule<ModuleConfig>({
     addTypeTemplate({
       filename: "types/sgx-title.d.ts",
       getContents: () => `
+      import type { ModuleConfig } from "${resolve("runtime/types/title")}";
       declare module "@nuxt/schema" {
         interface PublicRuntimeConfig {
           sgxTitle: ModuleConfig;
