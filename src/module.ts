@@ -1,3 +1,4 @@
+import { defu } from "defu";
 import { name, version } from "../package.json";
 import type { ModuleConfig } from "./runtime/types/title";
 import {
@@ -24,7 +25,10 @@ export default defineNuxtModule<ModuleConfig>({
 
     nuxt.options.build.transpile.push(resolve("runtime"));
 
-    nuxt.options.runtimeConfig.public.sgxTitle = options;
+    nuxt.options.runtimeConfig.public.sgxTitle = defu(
+      nuxt.options.runtimeConfig.public.sgxTitle,
+      options,
+    );
 
     addRouteMiddleware({
       name: "sgx-title",
@@ -46,12 +50,6 @@ export default defineNuxtModule<ModuleConfig>({
     addTypeTemplate({
       filename: "types/sgx-title.d.ts",
       getContents: () => `
-      import type { ModuleConfig } from "${resolve("runtime/types/title")}";
-      declare module "@nuxt/schema" {
-        interface PublicRuntimeConfig {
-          sgxTitle: ModuleConfig;
-        }
-      }
       declare module "#app/../pages/runtime/composables" {
         interface PageMeta {
           ${options.titleKey}?: string;
@@ -61,3 +59,9 @@ export default defineNuxtModule<ModuleConfig>({
     });
   },
 });
+
+declare module "@nuxt/schema" {
+  interface PublicRuntimeConfig {
+    sgxTitle: ModuleConfig;
+  }
+}

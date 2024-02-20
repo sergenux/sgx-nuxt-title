@@ -25,16 +25,15 @@
     "dev:build": "nuxt build playground",
     "dev:generate": "nuxt generate playground",
     "dev:preview": "nuxt preview playground",
-    "prepack": "nuxt-module-build build",
-    "prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxt prepare playground",
-    "typecheck": "npm run prepare && nuxt typecheck && nuxt typecheck playground",
+    "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxt prepare playground",
+    "prepack": "nuxt-module-build prepare && nuxt-module-build build",
+    "typecheck": "npm run dev:prepare && nuxt typecheck && nuxt typecheck playground",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier . --check",
     "format:fix": "prettier . --write",
     "outdated": "npm outdated",
-    "update": "npm update",
-    "postinstall": "npm run prepare"
+    "update": "npm update"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.2.0",
@@ -44,5 +43,8 @@
     "nuxt": "^3.10.2",
     "prettier": "^3.2.5",
     "vue-tsc": "^1.8.27"
+  },
+  "dependencies": {
+    "defu": "^6.1.4"
   }
 }

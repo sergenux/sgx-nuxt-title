@@ -1,4 +1,4 @@
 export interface ModuleConfig {
-  prefix: string;
-  titleKey: string;
+  prefix?: string;
+  titleKey?: string;
 }

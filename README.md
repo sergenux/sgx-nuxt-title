@@ -162,6 +162,9 @@ cd sgx-nuxt-title
 # Install dependencies
 npm install
 
+# Prepare types
+npm run dev:prepare
+
 # Develop with the playground
 npm run dev
 

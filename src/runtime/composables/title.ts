@@ -1,4 +1,3 @@
-import type { ModuleConfig } from "../types/title";
 import {
   computed,
   useRoute,
@@ -11,9 +10,9 @@ export function useTitle(): ComputedRef<string> {
   const runtimeConfig = useRuntimeConfig();
 
   return computed(() => {
-    const moduleConfig = runtimeConfig.public.sgxTitle as ModuleConfig;
+    const moduleConfig = runtimeConfig.public.sgxTitle;
     const titleKey = moduleConfig.titleKey;
-    const title = route.meta[titleKey];
+    const title = titleKey && route.meta[titleKey];
     return typeof title === "string" ? title : "";
   });
 }
