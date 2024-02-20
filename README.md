@@ -69,13 +69,13 @@ interface ModuleConfig {
 
 ### useTitle
 
-#### Type
+Type:
 
 ```ts
 useTitle(): ComputedRef<string>;
 ```
 
-#### Usage
+Usage:
 
 ```vue
 <template>
@@ -94,7 +94,7 @@ const title = useSgxTitle();
 
 ### \<SgxTitle\>
 
-#### Usage
+Usage:
 
 ```vue
 <template>
@@ -107,7 +107,7 @@ const title = useSgxTitle();
 </script>
 ```
 
-#### Override component template
+Override component template:
 
 ```vue
 <template>
