@@ -5,3 +5,4 @@
 /playground/.output
 /playground/dist
 /playground/node_modules
+/package-lock.json
