@@ -1,14 +1,15 @@
-import { defu } from "defu";
 import { name, version } from "../package.json";
-import type { ModuleConfig } from "./runtime/types/title";
 import {
   addComponent,
   addImports,
   addRouteMiddleware,
-  addTypeTemplate,
   createResolver,
   defineNuxtModule,
 } from "@nuxt/kit";
+
+export interface ModuleConfig {
+  prefix: string;
+}
 
 export default defineNuxtModule<ModuleConfig>({
   meta: {
@@ -18,17 +19,11 @@ export default defineNuxtModule<ModuleConfig>({
   },
   defaults: {
     prefix: "Sgx",
-    titleKey: "title",
   },
-  setup(options, nuxt) {
+  setup(moduleConfig, nuxt) {
     const { resolve } = createResolver(import.meta.url);
 
     nuxt.options.build.transpile.push(resolve("runtime"));
-
-    nuxt.options.runtimeConfig.public.sgxTitle = defu(
-      nuxt.options.runtimeConfig.public.sgxTitle,
-      options,
-    );
 
     addRouteMiddleware({
       name: "sgx-title",
@@ -37,31 +32,20 @@ export default defineNuxtModule<ModuleConfig>({
     });
 
     addComponent({
-      name: `${options.prefix}Title`,
+      name: `${moduleConfig.prefix}Title`,
       filePath: resolve("runtime/components/title.vue"),
     });
 
     addImports({
       name: "useTitle",
-      as: `use${options.prefix}Title`,
+      as: `use${moduleConfig.prefix}Title`,
       from: resolve("runtime/composables/title"),
-    });
-
-    addTypeTemplate({
-      filename: "types/sgx-title.d.ts",
-      getContents: () => `
-      declare module "#app/../pages/runtime/composables" {
-        interface PageMeta {
-          ${options.titleKey}?: string;
-        }
-      }
-      export {};`,
     });
   },
 });
 
-declare module "@nuxt/schema" {
-  interface PublicRuntimeConfig {
-    sgxTitle: ModuleConfig;
+declare module "#app/../pages/runtime/composables" {
+  interface PageMeta {
+    title?: string;
   }
 }

@@ -55,13 +55,6 @@ interface ModuleConfig {
    * @default "Sgx"
    */
   prefix: string;
-
-  /**
-   * Page Meta key.
-   *
-   * @default "title"
-   */
-  titleKey: string;
 }
 ```
 
@@ -72,7 +65,7 @@ interface ModuleConfig {
 Type:
 
 ```ts
-useTitle(): ComputedRef<string>;
+declare function useTitle(): ComputedRef<string>;
 ```
 
 Usage:

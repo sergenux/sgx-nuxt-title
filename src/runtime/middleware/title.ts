@@ -1,15 +1,11 @@
-import { defineNuxtRouteMiddleware, useRuntimeConfig } from "#imports";
+import { defineNuxtRouteMiddleware } from "#imports";
 import { titleCase } from "scule";
 import { parseFilename, withoutTrailingSlash } from "ufo";
 
 export default defineNuxtRouteMiddleware((route) => {
-  const runtimeConfig = useRuntimeConfig();
-  const moduleConfig = runtimeConfig.public.sgxTitle;
-  const titleKey = moduleConfig.titleKey;
-
-  if (titleKey && route.meta[titleKey] === undefined) {
+  if (route.meta.title === undefined) {
     const path = withoutTrailingSlash(route.path);
     const basename = parseFilename(path, { strict: false });
-    route.meta[titleKey] = basename ? titleCase(basename) : "Home";
+    route.meta.title = basename ? titleCase(basename) : "Home";
   }
 });
