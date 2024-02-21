@@ -1,6 +1,6 @@
 # sgx-nuxt-title
 
-Auto title for Nuxt pages.
+Auto title feature for Nuxt pages.
 
 ## Quick Start
 
@@ -51,7 +51,6 @@ export default defineNuxtConfig({
 interface ModuleConfig {
   /**
    * Prefix for components and composables.
-   *
    * @default "Sgx"
    */
   prefix: string;
@@ -118,6 +117,19 @@ Override auto title:
 <script setup lang="ts">
 definePageMeta({
   title: "My page title",
+});
+</script>
+```
+
+Override with dynamic data:
+
+```vue
+<script setup lang="ts">
+definePageMeta({
+  middleware: async (route) => {
+    const data = await fetchData();
+    route.meta.title = data.title;
+  },
 });
 </script>
 ```
