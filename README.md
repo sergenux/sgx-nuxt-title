@@ -59,12 +59,12 @@ interface ModuleConfig {
 
 ## Composables
 
-### useTitle
+### useSgxTitle
 
 Type:
 
 ```ts
-declare function useTitle(): ComputedRef<string>;
+declare function useSgxTitle(): ComputedRef<string>;
 ```
 
 Usage:
