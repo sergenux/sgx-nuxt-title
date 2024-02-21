@@ -24,7 +24,7 @@ export default defineNuxtConfig({
 npx nuxi prepare
 ```
 
-4. Add commponent to `app.vue`:
+4. Add component to `app.vue`:
 
 ```vue
 <template>

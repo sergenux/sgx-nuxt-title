@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "#imports";
+import { defineComponent } from "vue";
 import { useTitle } from "../composables/title";
 
 export default defineComponent({
