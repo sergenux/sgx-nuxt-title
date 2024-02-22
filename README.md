@@ -109,7 +109,7 @@ interface Props {
 
 interface Slot {
   // Page title
-  title: string
+  title?: string
 }
 ```
 
