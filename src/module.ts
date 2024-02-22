@@ -7,11 +7,11 @@ import {
   defineNuxtModule
 } from '@nuxt/kit'
 
-interface ModuleConfig {
+export interface ModuleOptions {
   prefix?: string
 }
 
-export default defineNuxtModule<ModuleConfig>({
+export default defineNuxtModule<ModuleOptions>({
   meta: {
     name,
     version,

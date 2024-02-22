@@ -34,12 +34,12 @@ export default defineNuxtConfig({
 </template>
 ```
 
-## Module configuration
+## Module options
 
 **Type:**
 
 ```ts
-interface ModuleConfig {
+interface ModuleOptions {
   // Prefix for components and composables
   // Default: "Sgx"
   prefix?: string
@@ -53,7 +53,7 @@ interface ModuleConfig {
 export default defineNuxtConfig({
   modules: ['sgx-nuxt-title'],
   sgxTitle: {
-    // Module config...
+    // Module options...
   }
 })
 ```
