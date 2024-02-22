@@ -20,7 +20,7 @@ export default defineNuxtModule<ModuleOptions>({
   defaults: {
     prefix: 'Sgx'
   },
-  setup(moduleConfig, nuxt) {
+  setup(options, nuxt) {
     const { resolve } = createResolver(import.meta.url)
 
     nuxt.options.build.transpile.push(resolve('runtime'))
@@ -32,13 +32,13 @@ export default defineNuxtModule<ModuleOptions>({
     })
 
     addComponent({
-      name: `${moduleConfig.prefix}Title`,
+      name: `${options.prefix}Title`,
       filePath: resolve('runtime/components/title.vue')
     })
 
     addImports({
       name: 'useTitle',
-      as: `use${moduleConfig.prefix}Title`,
+      as: `use${options.prefix}Title`,
       from: resolve('runtime/composables/title')
     })
   }
