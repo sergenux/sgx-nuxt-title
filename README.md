@@ -36,7 +36,7 @@ export default defineNuxtConfig({
 
 ## Module configuration
 
-#### Type:
+**Type:**
 
 ```ts
 interface ModuleConfig {
@@ -46,7 +46,7 @@ interface ModuleConfig {
 }
 ```
 
-#### Usage:
+**Usage:**
 
 ```ts
 // nuxt.config.ts
@@ -60,7 +60,7 @@ export default defineNuxtConfig({
 
 ## Page properties
 
-#### Type:
+**Type:**
 
 ```ts
 interface PageMeta {
@@ -69,7 +69,7 @@ interface PageMeta {
 }
 ```
 
-#### Usage:
+**Usage:**
 
 Override auto title:
 
@@ -98,7 +98,7 @@ definePageMeta({
 
 ### `<SgxTitle>`
 
-#### Types:
+**Types:**
 
 ```ts
 interface Props {
@@ -113,7 +113,7 @@ interface Slot {
 }
 ```
 
-#### Usage:
+**Usage:**
 
 Basic usage:
 
@@ -137,13 +137,13 @@ Override component template:
 
 ### `useSgxTitle`
 
-#### Type:
+**Type:**
 
 ```ts
 type Composable = () => ComputedRef<string>
 ```
 
-#### Usage:
+**Usage:**
 
 ```vue
 <template>
