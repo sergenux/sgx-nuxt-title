@@ -1,26 +1,22 @@
 <template>
   <component :is="as">
-    <slot :title="title">
-      <h1>{{ title }}</h1>
-    </slot>
+    <slot :title="title">{{ title }}</slot>
   </component>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-import { useTitle } from "../composables/title";
+<script setup lang="ts">
+import { useTitle } from '../composables/title'
 
-export default defineComponent({
-  props: {
-    as: {
-      type: String,
-      default: "div",
-    },
-  },
-  setup() {
-    const title = useTitle();
+interface Props {
+  as?: string
+}
 
-    return { title };
-  },
-});
+interface Slot {
+  title: string
+}
+
+withDefaults(defineProps<Props>(), { as: 'h1' })
+defineSlots<{ default(props: Slot): any }>()
+
+const title = useTitle()
 </script>

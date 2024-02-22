@@ -1,10 +1,15 @@
 # sgx-nuxt-title
 
-Auto title feature for Nuxt pages.
+Auto page titles for Nuxt.
 
-## Quick Start
+## Features
 
-1. Install package:
+- Auto titles from URL
+- Overriding with custom titles
+
+## Setup
+
+1.  Install package:
 
 ```bash
 npm install sgx-nuxt-title
@@ -14,17 +19,11 @@ npm install sgx-nuxt-title
 
 ```ts
 export default defineNuxtConfig({
-  modules: ["sgx-nuxt-title"],
-});
+  modules: ['sgx-nuxt-title']
+})
 ```
 
-3. Prepare types:
-
-```bash
-npx nuxi prepare
-```
-
-4. Add component to `app.vue`:
+3. Add component to `app.vue`:
 
 ```vue
 <template>
@@ -35,39 +34,116 @@ npx nuxi prepare
 </template>
 ```
 
-## Module config
+## Module configuration
+
+#### Type:
+
+```ts
+interface ModuleConfig {
+  // Prefix for components and composables
+  // Default: "Sgx"
+  prefix?: string
+}
+```
+
+#### Usage:
 
 ```ts
 // nuxt.config.ts
 export default defineNuxtConfig({
-  modules: ["sgx-nuxt-title"],
+  modules: ['sgx-nuxt-title'],
   sgxTitle: {
-    // Module config
-  },
-});
+    // Module config...
+  }
+})
 ```
 
+## Page properties
+
+#### Type:
+
 ```ts
-interface ModuleConfig {
-  /**
-   * Prefix for components and composables.
-   * @default "Sgx"
-   */
-  prefix: string;
+interface PageMeta {
+  // Page title
+  title?: string
 }
+```
+
+#### Usage:
+
+Override auto title:
+
+```vue
+<script setup lang="ts">
+definePageMeta({
+  title: 'My page title'
+})
+</script>
+```
+
+Override auto title with dynamic data:
+
+```vue
+<script setup lang="ts">
+definePageMeta({
+  middleware: async (route) => {
+    const data = await fetchData()
+    route.meta.title = data.title
+  }
+})
+</script>
+```
+
+## Components
+
+### `<SgxTitle>`
+
+#### Types:
+
+```ts
+interface Props {
+  // Element
+  // Default: "h1"
+  as?: string
+}
+
+interface Slot {
+  // Page title
+  title: string
+}
+```
+
+#### Usage:
+
+Basic usage:
+
+```vue
+<template>
+  <SgxTitle />
+</template>
+```
+
+Override component template:
+
+```vue
+<template>
+  <SgxTitle v-slot="{ title }" as="div">
+    <h1>{{ title }}</h1>
+  </SgxTitle>
+</template>
 ```
 
 ## Composables
 
-### useSgxTitle
+### `useSgxTitle`
 
-Type:
+#### Type:
 
 ```ts
-declare function useSgxTitle(): ComputedRef<string>;
+type Composable = () => ComputedRef<string>
 ```
 
-Usage:
+#### Usage:
 
 ```vue
 <template>
@@ -75,62 +151,7 @@ Usage:
 </template>
 
 <script setup lang="ts">
-// If auto-import is disabled
-// import { useSgxTitle } from "#imports";
-
-const title = useSgxTitle();
-</script>
-```
-
-## Components
-
-### \<SgxTitle\>
-
-Usage:
-
-```vue
-<template>
-  <SgxTitle />
-</template>
-
-<script setup lang="ts">
-// If auto-import is disabled
-// import { SgxTitle } from "#components";
-</script>
-```
-
-Override component template:
-
-```vue
-<template>
-  <SgxTitle v-slot="{ title }">
-    <h1>{{ title }}</h1>
-  </SgxTitle>
-</template>
-```
-
-## Page Meta
-
-Override auto title:
-
-```vue
-<script setup lang="ts">
-definePageMeta({
-  title: "My page title",
-});
-</script>
-```
-
-Override with dynamic data:
-
-```vue
-<script setup lang="ts">
-definePageMeta({
-  middleware: async (route) => {
-    const data = await fetchData();
-    route.meta.title = data.title;
-  },
-});
+const title = useSgxTitle()
 </script>
 ```
 
@@ -170,10 +191,10 @@ npm install
 # Prepare types
 npm run dev:prepare
 
-# Develop with the playground
+# Develop with playground
 npm run dev
 
-# Build the playground
+# Build playground
 npm run dev:build
 
 # Code checks

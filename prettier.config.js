@@ -1,1 +1,5 @@
-export default {};
+export default {
+  semi: false,
+  singleQuote: true,
+  trailingComma: 'none'
+}

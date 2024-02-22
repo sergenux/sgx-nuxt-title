@@ -1,6 +1,8 @@
-import { computed, useRoute, type ComputedRef } from "#imports";
+import { computed, useRoute, type ComputedRef } from '#imports'
 
-export function useTitle(): ComputedRef<string> {
-  const route = useRoute();
-  return computed(() => route.meta.title ?? "");
+type Composable = () => ComputedRef<string>
+
+export const useTitle: Composable = () => {
+  const route = useRoute()
+  return computed(() => route.meta.title ?? '')
 }
