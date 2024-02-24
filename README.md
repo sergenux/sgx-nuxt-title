@@ -1,11 +1,6 @@
 # sgx-nuxt-title
 
-Auto page titles for Nuxt.
-
-## Features
-
-- Auto titles from URL
-- Overriding with custom titles
+Auto-titles for Nuxt pages.
 
 ## Setup
 
@@ -15,15 +10,16 @@ Auto page titles for Nuxt.
 npm install sgx-nuxt-title
 ```
 
-2. Add module to `nuxt.config.ts`:
+2. Add package to `modules` in `nuxt.config.ts`:
 
 ```ts
+// nuxt.config.ts
 export default defineNuxtConfig({
   modules: ['sgx-nuxt-title']
 })
 ```
 
-3. Add component to `app.vue`:
+3. Add `<SgxTitle>` component to `app.vue`:
 
 ```vue
 <template>
@@ -34,19 +30,23 @@ export default defineNuxtConfig({
 </template>
 ```
 
-## Module options
+## Configuration
+
+### Module options
 
 **Type:**
 
 ```ts
 interface ModuleOptions {
   // Prefix for components and composables
-  // Default: "Sgx"
+  // Default: 'Sgx'
   prefix?: string
 }
 ```
 
 **Usage:**
+
+Set module options to `sgxTitle` in `nuxt.config.ts`:
 
 ```ts
 // nuxt.config.ts
@@ -65,13 +65,14 @@ export default defineNuxtConfig({
 ```ts
 interface PageMeta {
   // Page title
+  // Default: Generated from URL slug
   title?: string
 }
 ```
 
 **Usage:**
 
-Override auto title:
+Override auto-title:
 
 ```vue
 <script setup lang="ts">
@@ -81,13 +82,13 @@ definePageMeta({
 </script>
 ```
 
-Override auto title with dynamic data:
+Override with dynamic data:
 
 ```vue
 <script setup lang="ts">
 definePageMeta({
   middleware: async (route) => {
-    const data = await fetchData()
+    const data = await fetchData(route.params)
     route.meta.title = data.title
   }
 })
@@ -140,7 +141,7 @@ Override component template:
 **Type:**
 
 ```ts
-type Composable = () => ComputedRef<string>
+functions (): ComputedRef<string>
 ```
 
 **Usage:**
@@ -168,7 +169,7 @@ Pages:
 -| index.vue
 ```
 
-Auto titles:
+Generated auto-titles:
 
 - `/` - Home
 - `/blog` - Blog
