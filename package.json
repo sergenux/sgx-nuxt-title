@@ -1,6 +1,6 @@
 {
   "name": "sgx-nuxt-title",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Auto-titles for Nuxt pages",
   "repository": {
     "type": "git",

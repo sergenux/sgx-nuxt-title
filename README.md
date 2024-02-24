@@ -104,7 +104,7 @@ definePageMeta({
 ```ts
 interface Props {
   // Element
-  // Default: "h1"
+  // Default: 'h1'
   as?: string
 }
 
@@ -141,7 +141,7 @@ Override component template:
 **Type:**
 
 ```ts
-functions (): ComputedRef<string>
+function (): ComputedRef<string>
 ```
 
 **Usage:**
