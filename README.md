@@ -36,7 +36,7 @@ export default defineNuxtConfig({
 
 ```ts
 interface NuxtConfig {
-  sgxTitle: ModuleOptions
+  sgxTitle?: ModuleOptions
 }
 
 interface ModuleOptions {
