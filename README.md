@@ -141,7 +141,9 @@ Override component template:
 **Type:**
 
 ```ts
-function (): ComputedRef<string>
+interface Composable {
+  (): ComputedRef<string>
+}
 ```
 
 **Usage:**
