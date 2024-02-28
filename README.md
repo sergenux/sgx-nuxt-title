@@ -19,7 +19,7 @@ export default defineNuxtConfig({
 })
 ```
 
-3. Add `<SgxTitle>` component to `app.vue`:
+3. Add `<SgxTitle>` component to layout or `app.vue`:
 
 ```vue
 <template>
